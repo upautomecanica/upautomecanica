@@ -1,0 +1,149 @@
+/* Configurações Gerais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: white;
+  --bg-url: url(./assets/bg-mobile.png);
+  --stroke-color: rgba(255, 255, 255, 0.2);
+  --surface-color: rgba(0, 0, 0, 0.5); /* Preto suave */
+  --surface-color-hover: rgba(0, 0, 0, 0.7);
+}
+
+/* Modificação para Desktop */
+@media (min-width: 700px) {
+  :root {
+    --bg-url: url(./assets/bg-desktop.jpeg);
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* Camada de Fundo: Menos escuro e Blur mais leve */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: var(--bg-url) no-repeat top center/cover;
+
+  /* Aumentei o brilho para 0.45 (estava 0.2, por isso estava muito escuro) */
+  filter: blur(15px) brightness(0.45);
+
+  transform: scale(1.1);
+}
+
+body * {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+}
+
+#container {
+  width: 100%;
+  max-width: 588px;
+  margin: 100px auto 0px;
+  padding: 0 24px;
+}
+
+/* Perfil: Ajustado para ser nítido */
+#profile {
+  text-align: center;
+  padding: 30px;
+}
+
+#profile img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover; /* Garante que a foto não amasse */
+  border-radius: 50%; /* Faz o círculo perfeito */
+
+  /* Em vez de borda branca, usamos uma sombra preta sutil */
+  border: none;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+#profile p {
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 15px;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Caixinhas de Texto (Links) */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+
+  /* Fundo preto translúcido para dar contraste sem embaçar a letra */
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  border-radius: 8px;
+
+  /* Removi o backdrop-filter daqui porque ele estava embaçando o texto */
+  text-decoration: none;
+  font-weight: 500;
+  color: #ffffff;
+
+  /* Sombra leve para a letra "saltar" */
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+
+  transition:
+    background 0.3s,
+    transform 0.2s;
+}
+
+ul li a:hover {
+  background: var(--surface-color-hover);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Redes Sociais */
+#social-links {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+  font-size: 28px;
+}
+
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  transition: transform 0.2s;
+  filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+#social-links a:hover {
+  transform: scale(1.2);
+}
+
+footer {
+  padding: 15px 0;
+  text-align: center;
+  font-size: 14px;
+}
